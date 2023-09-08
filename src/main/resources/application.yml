@@ -1,4 +1,7 @@
 spring:
+  ai:
+    openai:
+      api-key: "YOUR KEY HERE"
   jpa:
     generate-ddl: true
 
