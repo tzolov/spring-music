@@ -39,7 +39,7 @@ import org.springframework.core.io.Resource;
 public class MessageRetriever {
 
 	@Value("classpath:/prompts/system-qa.st")
-	private Resource systemBikePrompt;
+	private Resource systemPrompt;
 
 	private VectorStoreRetriever vectorStoreRetriever;
 
@@ -66,7 +66,7 @@ public class MessageRetriever {
 	private Message getSystemMessage(List<Document> relatedDocuments) {
 
 		String documents = relatedDocuments.stream().map(entry -> entry.getContent()).collect(Collectors.joining("\n"));
-		SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(systemBikePrompt);
+		SystemPromptTemplate systemPromptTemplate = new SystemPromptTemplate(systemPrompt);
 		Message systemMessage = systemPromptTemplate.createMessage(Map.of("documents", documents));
 		return systemMessage;
 
